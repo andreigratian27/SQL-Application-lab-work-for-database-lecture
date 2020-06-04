@@ -1,0 +1,58 @@
+select room_number, building
+from CLASSROOM
+where capacity > 80
+----
+
+select instructor_name, instructor department, salary
+from INSTRUCTORS
+where salary > 3000
+order by 1 asc
+
+---
+Q4: All students who are in the 2nd year of study
+
+select student_name, student_id, student_department
+from students
+where student_id like '2%'
+
+---
+Q5: Classroom which are at floor 1 and has capcity > 60 places
+
+select room_number, building, capacity
+from classroom
+where room_number like '_1%'
+and capacity > 60
+order by 3 desc;
+
+---
+Q6: New salary with 25% increasing for instructors from Informatica Economica and Matematici aplicate
+and after they are ordered by their new salary and ,secondly, by their name
+
+select instructor_name, instructor_department, round(salary*1.25,1) "New Salary"
+from instructors
+where instructor_department='Informatica Economica' OR instructor_department='Matematici aplicate'
+order by 3 asc, 1 asc 
+
+---
+Q7: CASE exemple
+
+select building, case 
+when building = 'Eminescu' then 'E'
+when building = 'Moxa' then 'M'
+else '0' end initiala
+from classroom
+
+---
+Q8:
+
+select building, round(max(capacity),0) "Maximum",
+round(min(capacity),0) "Minimum"
+from classroom
+group by building
+
+---
+
+select *
+from students
+inner join departments
+on students.student_department=departments.department_name
